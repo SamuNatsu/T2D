@@ -3,6 +3,10 @@
 
 
 // Module includes
+#include "./GameObject.hpp"
+#include "./RigidBox.hpp"
+#include "./TriggerBox.hpp"
+#include "./Vec2.hpp"
 
 // Version macros
 #define T2D_MAJOR_VERSION 0

@@ -3,7 +3,7 @@
 
 
 // Headers
-#include "Header.hpp"
+#include "./Header.hpp"
 
 T2D_NS_BEGIN
 
@@ -15,7 +15,7 @@ public:
     Vec2(double = 0.0, double = 0.0);
     Vec2(const Vec2&) = default;
     Vec2(Vec2&&) = default;
-    ~Vec2() = default;
+    virtual ~Vec2() = default;
 
     Vec2& operator=(const Vec2&) = default;
     Vec2& operator=(Vec2&&) = default;
@@ -39,6 +39,8 @@ public:
     double operator^(const Vec2&) const;
 
     operator sf::Vector2f() const;
+
+    Vec2& setXY(double, double);
 
     double getLength() const;
 

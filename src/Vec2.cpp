@@ -60,6 +60,12 @@ Vec2::operator sf::Vector2f() const {
     return sf::Vector2f(x, y);
 }
 
+Vec2& Vec2::setXY(double _x, double _y) {
+    x = _x;
+    y = _y;
+    return *this;
+}
+
 double Vec2::getLength() const {
     return hypot(x, y);
 }
@@ -73,16 +79,19 @@ double Vec2::getAngle(const Vec2& _o) const {
 }
 
 Vec2 Vec2::getNormal() const {
-    return getNormalized().rotate(T2D_PI);
+    return getNormalized().rotate(T2D_PI_2);
 }
 
 Vec2 Vec2::getNormalized() const {
     double len = getLength();
-    return len < T2D_EPS ? *this : *this / len;
+    return feq(len, 0) ? *this : *this / len;
 }
 
 Vec2& Vec2::normalize() {
-    return *this = getNormalized();
+    double len = getLength();
+    if (!feq(len, 0))
+        *this /= len;
+    return *this;
 }
 
 Vec2 Vec2::getRotated(double _a) const {
@@ -90,7 +99,8 @@ Vec2 Vec2::getRotated(double _a) const {
 }
 
 Vec2& Vec2::rotate(double _a) {
-    return *this = getRotated(_a);
+    setXY(x * cos(_a) - y * sin(_a), x * sin(_a) + y * cos(_a));
+    return *this;
 }
 
 Vec2 Vec2::getScaled(double _a, double _b) const {

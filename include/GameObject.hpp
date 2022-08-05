@@ -3,13 +3,17 @@
 
 
 // Headers
-#include "Header.hpp"
+#include "./Header.hpp"
+#include "./RigidBox.hpp"
 
 T2D_NS_BEGIN
 
 // Abstract game object
 class T2D_API GameObject {
 public:
+    size_t UUID;
+    RigidBox rigid;
+
     GameObject() = default;
     GameObject(const GameObject&) = delete;
     GameObject(GameObject&&) = default;
